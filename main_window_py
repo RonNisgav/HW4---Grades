@@ -27,6 +27,14 @@ class MainWindow(QWidget):
         self.bonus_box.setGeometry(340,20,80,35)
         self.bonus_box.setRange(0,100)
 
+        self.percent_label = QLabel('Bonus %', self)
+        self.percent_label.setGeometry(440,20,70,35)
+
+        self.percent_box = QSpinBox(self)
+        self.percent_box.setGeometry(510,20,70,35)
+        self.percent_box.setRange(0,100)
+        self.percent_box.editingFinished.connect(self.bonus_method)
+
         self.table = QTableWidget(50,3,self)
         self.table.setGeometry(20,75,560,520)
         self.table.setHorizontalHeaderLabels(['ID','Original Grades','Corrected Grades'])
