@@ -69,14 +69,6 @@ class MainWindow(QWidget):
 
         self.update_table()        
 
-    def update_file_method(self):
-        bonus = self.bonus_box.value()
-
-        for i in range(len(self.original_grades)):
-            self.corrected_grades[i] = min(self.original_grades[i] + bonus , 100)
-
-        self.update_table()
-
     def bonus_method(self):
         points = self.bonus_box.value()
         percent = self.percent_box.value()
@@ -86,9 +78,28 @@ class MainWindow(QWidget):
             new_grade = round(new_grade)
             if new_grade > 100: new_grade = 100
             self.corrected_grades[i] = new_grade
-
-
+    
         self.update_table()
+    
+    def update_file_method(self):
+        if self.selected_file == '': return
+
+        with open(self.selected_file) as f:
+            lines = f.readlines()
+
+        header = lines[0]
+
+        with open(self.selected_file, 'w') as f:
+            f.write(header)
+            for i in range(len(self.student_ids)):
+                f.write(f'{self.student_ids[i]},{self.corrected_grades[i]}\n')
+
+                if os.name == 'nt':
+                    os.startfile(self.selected_file)
+                elif os.uname().sysname == 'Darwin':
+                    os.system(f'open "{self.selected_file}"')
+                else:
+                    os.system(f'xdg-open "{self.selected_file}"')
 
     def update_table(self):
         self.table.setRowCount(len(self.student_ids))
