@@ -45,6 +45,12 @@ class MainWindow(QWidget):
         filename = result[0]
         if not filename: return
 
+
+        self.selected_file = filename
+        self.student_ids = []
+        self.original_grades = []
+        self.corrected_grades = []
+
     def bonus_method(self):
         pass  # your code: corrected = min(original + bonus, 100) -> self.update_table()
 
