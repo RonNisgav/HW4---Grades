@@ -41,7 +41,9 @@ class MainWindow(QWidget):
         self.about_button.clicked.connect(self.show_about)
 
     def load_method(self):
-        pass  # your code: file dialog -> selected_file -> fill the 3 lists -> self.update_table()
+        result = QFileDialog.getOpenFileName(self, 'Select students file', '', 'CSV files (*.csv)')
+        filename = result[0]
+        if not filename: return
 
     def bonus_method(self):
         pass  # your code: corrected = min(original + bonus, 100) -> self.update_table()
