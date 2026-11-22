@@ -16,10 +16,6 @@ class AboutWindow(QWidget):
         self.title.setGeometry(20, 15, 480, 40)
         self.title.setStyleSheet('font-size: 26px; color: blue')
 
-        pixmap = QPixmap('photo.jpg')
-        self.photo.setPixmap(pixmap)
-        self.photo.setScaledContents(True)
-
         self.name_label = QLabel('Ron Nisgav', self)
         self.name_label.setGeometry(20, 290, 480, 30)
 
