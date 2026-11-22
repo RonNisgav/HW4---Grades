@@ -51,6 +51,17 @@ class MainWindow(QWidget):
         self.original_grades = []
         self.corrected_grades = []
 
+        with open(self.selected_file) as f:
+            lines = f.readlines()
+
+        for line in lines[1:]:
+            parts = line.strip().split(',')
+            self.student_ids.append(parts[0])
+            self.original_grades.append(int(parts[1]))
+            self.corrected_grades.append(int(parts[2]))
+
+        self.update_table()
+
     def bonus_method(self):
         pass  # your code: corrected = min(original + bonus, 100) -> self.update_table()
 
