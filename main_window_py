@@ -1,7 +1,6 @@
 import os
 from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QSpinBox, QLabel, QTableWidget, QTableWidgetItem, QFileDialog
 from about_window import AboutWindow
-import os
 
 
 class MainWindow(QWidget):
@@ -77,7 +76,7 @@ class MainWindow(QWidget):
 
         self.update_table()
 
-    def bonus_method(self):
+    def bonus_method(self,):
         points = self.bonus_box.value()
         percent = self.percent_box.value()
 
