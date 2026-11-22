@@ -68,6 +68,11 @@ class MainWindow(QWidget):
     def update_file_method(self):
         bonus = self.bonus_box.value()
 
+        for i in range(len(self.original_grades)):
+            self.corrected_grades[i] = min(self.original_grades[i] + bonus , 100)
+
+        self.update_table()
+
     def update_table(self):
         self.table.setRowCount(len(self.student_ids))
         for i in range(len(self.student_ids)):
