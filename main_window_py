@@ -58,7 +58,7 @@ class MainWindow(QWidget):
             parts = line.strip().split(',')
             self.student_ids.append(parts[0])
             self.original_grades.append(int(parts[1]))
-            self.corrected_grades.append(int(parts[2]))
+            self.corrected_grades.append(int(parts[1]))
 
         self.update_table()
 
