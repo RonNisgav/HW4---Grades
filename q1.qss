@@ -1,0 +1,33 @@
+QWidget {
+    background-color: #f3f6fb;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+QPushButton {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+QPushButton:hover {
+    background-color: #1d4ed8;
+}
+
+QSpinBox {
+    background-color: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+}
+
+QTableWidget {
+    background-color: white;
+    gridline-color: #e2e8f0;
+}
+
+QHeaderView::section {
+    background-color: #eaf1fa;
+    padding: 4px;
+    border: none;
+}
