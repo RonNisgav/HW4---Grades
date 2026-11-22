@@ -94,12 +94,12 @@ class MainWindow(QWidget):
             for i in range(len(self.student_ids)):
                 f.write(f'{self.student_ids[i]},{self.corrected_grades[i]}\n')
 
-                if os.name == 'nt':
-                    os.startfile(self.selected_file)
-                elif os.uname().sysname == 'Darwin':
-                    os.system(f'open "{self.selected_file}"')
-                else:
-                    os.system(f'xdg-open "{self.selected_file}"')
+        if os.name == 'nt':
+            os.startfile(self.selected_file)
+        elif os.uname().sysname == 'Darwin':
+            os.system(f'open "{self.selected_file}"')
+        else:
+            os.system(f'xdg-open "{self.selected_file}"')
 
     def update_table(self):
         self.table.setRowCount(len(self.student_ids))
