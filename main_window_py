@@ -1,5 +1,7 @@
+import os
 from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QSpinBox, QLabel, QTableWidget, QTableWidgetItem, QFileDialog
 from about_window import AboutWindow
+
 
 class MainWindow(QWidget):
 
@@ -26,6 +28,8 @@ class MainWindow(QWidget):
         self.bonus_box = QSpinBox(self)
         self.bonus_box.setGeometry(340,20,80,35)
         self.bonus_box.setRange(0,100)
+        self.bonus_box.setKeyboardTracking(False)
+        self.bonus_box.valueChanged.connect(self.bonus_method)
 
         self.percent_label = QLabel('Bonus %', self)
         self.percent_label.setGeometry(440,20,70,35)
@@ -33,11 +37,15 @@ class MainWindow(QWidget):
         self.percent_box = QSpinBox(self)
         self.percent_box.setGeometry(510,20,70,35)
         self.percent_box.setRange(0,100)
-        self.percent_box.editingFinished.connect(self.bonus_method)
+        self.percent_box.setKeyboardTracking(False)
+        self.percent_box.valueChanged.connect(self.bonus_method)
 
         self.table = QTableWidget(50,3,self)
         self.table.setGeometry(20,75,560,520)
         self.table.setHorizontalHeaderLabels(['ID','Original Grades','Corrected Grades'])
+        self.table.setColumnWidth(0,150)
+        self.table.setColumnWidth(1,170)
+        self.table.setColumnWidth(2,170)
 
         self.update_button = QPushButton('Update File', self)
         self.update_button.setGeometry(20,620,200,35)
@@ -51,7 +59,6 @@ class MainWindow(QWidget):
         result = QFileDialog.getOpenFileName(self, 'Select students file', '', 'CSV files (*.csv)')
         filename = result[0]
         if not filename: return
-
 
         self.selected_file = filename
         self.student_ids = []
@@ -67,7 +74,7 @@ class MainWindow(QWidget):
             self.original_grades.append(int(parts[1]))
             self.corrected_grades.append(int(parts[1]))
 
-        self.update_table()        
+        self.update_table()
 
     def bonus_method(self):
         points = self.bonus_box.value()
@@ -78,9 +85,9 @@ class MainWindow(QWidget):
             new_grade = round(new_grade)
             if new_grade > 100: new_grade = 100
             self.corrected_grades[i] = new_grade
-    
+
         self.update_table()
-    
+
     def update_file_method(self):
         if self.selected_file == '': return
 
