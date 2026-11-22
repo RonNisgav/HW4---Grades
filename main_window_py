@@ -81,6 +81,15 @@ class MainWindow(QWidget):
         points = self.bonus_box.value()
         percent = self.percent_box.value()
 
+        for i in range(len(self.original_grades)):
+            new_grade = self.original_grades[i] + points + self.original_grades[i] * percent / 100
+            new_grade = round(new_grade)
+            if new_grade > 100: new_grade = 100
+            self.corrected_grades[i] = new_grade
+
+
+        self.update_table()
+
     def update_table(self):
         self.table.setRowCount(len(self.student_ids))
         for i in range(len(self.student_ids)):
