@@ -26,7 +26,6 @@ class MainWindow(QWidget):
         self.bonus_box = QSpinBox(self)
         self.bonus_box.setGeometry(340,20,80,35)
         self.bonus_box.setRange(0,100)
-        self.bonus_box.editingFinished.connect(self.bonus_method)
 
         self.table = QTableWidget(50,3,self)
         self.table.setGeometry(20,75,560,520)
@@ -60,10 +59,7 @@ class MainWindow(QWidget):
             self.original_grades.append(int(parts[1]))
             self.corrected_grades.append(int(parts[1]))
 
-        self.update_table()
-
-    def bonus_method(self):
-        pass  # your code: corrected = min(original + bonus, 100) -> self.update_table()
+        self.update_table()        
 
     def update_file_method(self):
         bonus = self.bonus_box.value()
