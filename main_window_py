@@ -1,6 +1,7 @@
 import os
 from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QSpinBox, QLabel, QTableWidget, QTableWidgetItem, QFileDialog
 from about_window import AboutWindow
+import os
 
 
 class MainWindow(QWidget):
